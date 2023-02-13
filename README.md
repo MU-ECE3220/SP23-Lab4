@@ -14,6 +14,7 @@ class StudentNode{
         StudentNode();
         StudentNode(std::string fileName);
 	static FileIO file_handler;
+	void write_list_to_file();
 
 };
 
@@ -119,24 +120,31 @@ int main(int argc, char* argv[]){
 - Make commits as often as necessary, with self-contained bits of code rather than large blobs. ***You do not need to push after each commit.***
 - Itemized directions are below. You may not have to do them in order.
 
-1. Read and internalize the warnings.
-2. Create a `main.cpp` OR `main.cc` file. **N.B**: The C++ compiler recognizes either extension for Cplusplus source code files.
-	- Include the `argc` and `argv` arguments for the main function. For this assignment, you will be reading the node data from a text file.
-	- Use the command line arguments to pass in the file name **more on this later..**.  
-3. Create a header and implementation file for a studentList. 
+1. Create a `main.cpp` OR `main.cc` file. **N.B**: The C++ compiler recognizes either extension for Cplusplus source code files.
+2. Create a header and implementation file for a student node and file IO and then a `main.cpp` file 
 	- Define a C++ class for a student Node following the above example.
 	- Your class should include a default constructor which just creates an instance of the class with all data members set to null.
 	- Since the data for the Linked List will be read in from a file, you should also implement a constructor which takes in a file name as a parameter. 
-		- This constructor should go through every student in the file and create and link a node for each respective student.
+		- This constructor should create a node using the student record in the file.
 	- Each student file will follow this format:
 		``` 
 		Name
 		GPA
 		Total credits
 		```
-	- Implement a function to print list to standard out using the following format:
+	- In main, create a student node for each file in the assignment directory.
+	- In main, create the actual linked list using the function described next.
+	- Implement a function `insert_at_end` which takes the head of the list and a new student node and appends the node to the list.
+	- Implement a function to `student_at` which returns the student at the given node index.
+	- Implement a function to `delete_at` a single student node from anywhere in the list given an integer as the index to delete from. Assume the head node is index `0`.
+	- Implement a function `delete_all` which deletes all the student nodes.
+	- Implement a function `insert_at`  which inserts a student node at a specified index in the list.
+	- Implement a function `print_at` to prin the student profile as show below.
+	- Implement a function `print_student` which prints a student profile given the student node.
+	- Implement a function to `print_all_students` to print the student list to standard out using the following format:
 			- ```Student Name: #####\nGPA: #####\nTotal credits: ####```
 				- Replace the hashes with the actual data. 
+	- Implement a function to 
 	- Implement a function to print the contents of the list to a file with the following format:
 		``` 		
 		Name
