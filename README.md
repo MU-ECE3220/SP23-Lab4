@@ -13,8 +13,6 @@ class StudentNode{
         StudentNode* next_;
         StudentNode();
         StudentNode(std::string fileName);
-	static FileIO file_handler;
-	void write_list_to_file();
 
 };
 
@@ -77,7 +75,9 @@ class FileIO{
         std::string read_line();
 	void open_file(const std::string& filename);
 	void close_file();
-	void write(const std::string& output_filename);
+	void write_list_to_file(const std::string& output_filename, student_node* head);
+  private :
+  	std::fstream iofs;
 
 };
 
@@ -94,7 +94,10 @@ class FileIO{
 class Singleton{
 
   public: 
-        static Singleton& getInstance();
+        static Singleton& getInstance(){
+		static Singleton instance;
+		return instance;
+	}
         Singleton(Singleton const& ) = delete; // copy constructor;
         Singleton& operator=(Singleton const&) = delete; // copy assignment
         Singleton(Singleton &&) = delete; // move constructor
@@ -133,7 +136,7 @@ int main(int argc, char* argv[]){
 		Total credits
 		```
 	- In main, create a student node for each file in the assignment directory.
-	- In main, create the actual linked list using the function described next.
+	- In main, create the actual linked list using the insert at end function.
 	- Implement a function `insert_at_end` which takes the head of the list and a new student node and appends the node to the list.
 	- Implement a function to `student_at` which returns the student at the given node index.
 	- Implement a function to `delete_at` a single student node from anywhere in the list given an integer as the index to delete from. Assume the head node is index `0`.
@@ -144,8 +147,7 @@ int main(int argc, char* argv[]){
 	- Implement a function to `print_all_students` to print the student list to standard out using the following format:
 			- ```Student Name: #####\nGPA: #####\nTotal credits: ####```
 				- Replace the hashes with the actual data. 
-	- Implement a function to 
-	- Implement a function to print the contents of the list to a file with the following format:
+	- Implement a function `write_list_to_file` to write the contents of the list to a file with the following format:
 		``` 		
 		Name
 		GPA
@@ -157,10 +159,10 @@ int main(int argc, char* argv[]){
 		...
 		```	
 		
-4. Dynamically allocate students and nodes with C++'s `new` keyword.
-6. Test all of your functions in `main`.
-7. Add **ROBUST** error handling to deal with the command line input!!
-9. Print meaningful error messages to standard out. Such as ```c++ std::cout << "Could not delete student `" << student << "` . The student does not exist!"<< std::endl; ```
+3. Dynamically allocate students and nodes with C++'s `new` keyword.
+4. Test all of your functions in `main`.
+5. Add **ROBUST** error handling to deal with the command line input!!
+6. Print meaningful error messages to standard out. Such as ```c++ std::cout << "Could not delete student `" << student << "` . The student does not exist!"<< std::endl; ```
 	
 # Getting Started
 Get your personal link and invoke `git clone {linkhere}`, which should be a combination of your username and the name of the lab.
