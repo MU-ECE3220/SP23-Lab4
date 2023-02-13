@@ -1,5 +1,5 @@
-# Lab 3: Constructing Singly Linked Lists using C++ Classes
-For your lab this week, you will be constructing a singly linked list using a C++ class. This lab will serve as a soft introduction to programming in C++. Your task is to implement a singly linked list. You will represent each node using a C++ class object. Additionally,  you will be performing File I/O for reading in the data for your linked list nodes.
+# Lab 3: Introduction to C++ : Classes, FileIO and the Singleton Design Pattern.
+For your lab this week, you will be constructing a singly linked list using a C++ class. This lab will serve as a soft introduction to programming in C++. Your task is to implement a singly linked list. You will represent each node using a C++ class object. Additionally,  you will be performing File I/O for reading in the data for your linked list nodes. Your FileIO class shall follow the singleton design pattern.
 
 
 # Preliminaries 
@@ -13,10 +13,12 @@ class StudentNode{
         StudentNode* next_;
         StudentNode();
         StudentNode(std::string fileName);
+	static FileIO file_handler;
 
 };
 
 ```
+
 
 ## File I/O in C++
 Consult the <a href="https://www.cplusplus.com/reference/fstream/ifstream/">ifstream</a> and  <a href="https://www.cplusplus.com/reference/fstream/ofstream/ofstream/">ofstream</a> reference page for C++ File I/O.
@@ -64,6 +66,53 @@ int main(){
 	return 0;
 }
 
+```
+
+Your  `FileIO` class should have the following structure. This class will follow a singleton design pattern. Be sure to perform the necessary class setup (as in below) to realize the singleton design implementation.
+
+```c++
+class FileIO{
+  public : 
+        std::string read_line();
+	void open_file(const std::string& filename);
+	void close_file();
+	void write(const std::string& output_filename);
+
+};
+
+```
+
+
+
+
+
+# Singleton Design Pattern
+
+```cpp
+
+class Singleton{
+
+  public: 
+        static Singleton& getInstance();
+        Singleton(Singleton const& ) = delete; // copy constructor;
+        Singleton& operator=(Singleton const&) = delete; // copy assignment
+        Singleton(Singleton &&) = delete; // move constructor
+        Singleton& operator = (Singleton &&) = delete; // move assignment
+        ~Singleton();
+	void foo() { std::cout << __PRETTY_FUNCTION__ << std::endl;}
+  private:
+      Singleton(){}
+}
+
+int main(int argc, char* argv[]){
+
+	// To get an instance of our singleton, we define a C++ reference variable and bind it to the
+	// reference returned by the getInstance() method. That is, we give the singleton instance a name.
+	Singleton &singleton_instance = Singleton::getInstance();
+	singleton_instance.foo();
+	
+	return 0;
+}
 ```
 
 # Instructions 
