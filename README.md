@@ -1,4 +1,4 @@
-# Lab 3: Introduction to C++ : Classes, FileIO and the Singleton Design Pattern.
+# Lab 4: Introduction to C++ : Classes, FileIO and the Singleton Design Pattern.
 For your lab this week, you will be constructing a singly linked list using a C++ class. This lab will serve as a soft introduction to programming in C++. Your task is to implement a singly linked list. You will represent each node using a C++ class object. Additionally,  you will be performing File I/O for reading in the data for your linked list nodes. Your FileIO class shall follow the singleton design pattern.
 
 
